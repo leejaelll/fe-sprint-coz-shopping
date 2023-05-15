@@ -10,11 +10,6 @@
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
-#root {
-  width: 1280px;
-  margin: 0 76px;
-}
-
 a {
   text-decoration: none;
 }
