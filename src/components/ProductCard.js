@@ -6,6 +6,9 @@ import { useState } from 'react';
 import bookmarkOff from '../assets/bookmarkOff.svg';
 import bookmarkOn from '../assets/bookmarkOn.svg';
 
+import addBookmarkProducts from '../utils/addBookmarkProducts';
+import removeBookmarkProducts from '../utils/removeBookmarkProducts';
+
 const CardImg = styled.div`
   width: 100%;
   height: 210px;
@@ -45,17 +48,13 @@ const RightSection = styled.div`
   flex-direction: column;
   text-align: right;
 
-  strong {
+  div {
     font-weight: 600;
     margin-bottom: 0.25rem;
   }
 `;
 
-export default function ProductCard({
-  list,
-  bookmark,
-  handleClickAddBookmark,
-}) {
+export default function ProductCard({ list, bookmark }) {
   const {
     type,
     title,
@@ -70,16 +69,16 @@ export default function ProductCard({
 
   const [isBooked, setIsBooked] = useState(bookmark);
 
-  const handleClick = () => {
+  const handleClick = (list) => {
     setIsBooked((isBooked) => !isBooked);
-    !bookmark && handleClickAddBookmark(list);
+    isBooked ? removeBookmarkProducts(list) : addBookmarkProducts(list);
   };
 
   return (
     <GridItem>
       <CardImg>
         <img src={image_url || brand_image_url} />
-        <BookmarkStar onClick={handleClick}>
+        <BookmarkStar onClick={() => handleClick(list)}>
           {isBooked ? <img src={bookmarkOn} /> : <img src={bookmarkOff} />}
         </BookmarkStar>
       </CardImg>
@@ -92,8 +91,8 @@ export default function ProductCard({
           {sub_title && <h3>{sub_title}</h3>}
         </LeftSection>
         <RightSection>
-          {(type === 'Product' && <strong>{discountPercentage}%</strong>) ||
-            (type === 'Brand' && <strong>관심고객수</strong>)}
+          {(type === 'Product' && <div>{discountPercentage}%</div>) ||
+            (type === 'Brand' && <div>관심고객수</div>)}
           {(type === 'Product' && (
             <span>{Number(price).toLocaleString()}</span>
           )) ||
