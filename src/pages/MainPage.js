@@ -23,6 +23,12 @@ const Title = styled.h1`
 const BookmarkList = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 24px 76px;
+`;
+
+const GridItemCol12 = styled.div`
+  margin-top: 1rem;
+  grid-column: span 12;
 `;
 
 export default function MainPage() {
@@ -42,7 +48,21 @@ export default function MainPage() {
           })}
         </GridContainer>
       </ProductList>
-      <BookmarkList></BookmarkList>
+      <BookmarkList>
+        <Title>북마크 리스트</Title>
+        <GridContainer>
+          {bookmarkProducts.length === 0 ? (
+            <GridItemCol12>북마크 리스트가 비어있습니다.🦁</GridItemCol12>
+          ) : (
+            bookmarkProducts.map((list) => {
+              const isBooked = checkBookmarkedItem(bookmarkProducts, list);
+              return (
+                <ProductCard key={list.id} list={list} bookmark={isBooked} />
+              );
+            })
+          )}
+        </GridContainer>
+      </BookmarkList>
     </div>
   );
 }
