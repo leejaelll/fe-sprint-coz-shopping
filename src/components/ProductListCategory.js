@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 2.25rem;
-  margin-top: 1.5rem;
+  margin: 1.5rem 0;
 `;
 const TypeWrapper = styled.div`
   display: flex;
