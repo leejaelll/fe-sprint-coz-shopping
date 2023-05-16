@@ -20,17 +20,17 @@ export default function ProductListPage() {
   const products = useFetchAllProducts();
   const bookmarkProducts = useFetchBookmarkProducts();
   const productTypes = selectTypes(products);
-  //
 
   const [type, setType] = useState('Total');
-  const test =
+  const handleClickChangeType = (type) => {
+    setType(type);
+  };
+
+  const filteredProducts =
     type === 'Total'
       ? products
       : products.filter((product) => product.type === type);
 
-  const handleClickChangeType = (type) => {
-    setType(type);
-  };
   return (
     <Container>
       <ProductListCategory
@@ -39,7 +39,7 @@ export default function ProductListPage() {
         handleClickChangeType={handleClickChangeType}
       />
       <GridContainer>
-        {test.map((list) => {
+        {filteredProducts.map((list) => {
           const isBooked = checkBookmarkedItem(bookmarkProducts, list);
           return <ProductCard key={list.id} list={list} bookmark={isBooked} />;
         })}
