@@ -13,3 +13,13 @@
 a {
   text-decoration: none;
 }
+
+.active {
+  color: #412dd4;
+  font-weight: 700;
+}
+
+.active > span {
+  border-bottom: 3px solid #412dd4;
+  line-height: 1.2;
+}
