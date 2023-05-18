@@ -6,7 +6,28 @@ import MenuBar from './MenuBar';
 
 import HamburgerIcon from '../assets/hamburger.svg';
 
+export default function Header() {
+  const [isDropdown, setIsDropdown] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdown(!isDropdown);
+  };
+
+  return (
+    <HeaderContainer>
+      <Link to="/">
+        <Home>
+          <Logo src="/images/logo.png" alt="logo" />
+          <Title>COZ Shopping</Title>
+        </Home>
+      </Link>
+      <Hamburger src={HamburgerIcon} onClick={toggleDropdown} />
+      {isDropdown && <MenuBar />}
+    </HeaderContainer>
+  );
+}
+
 const HeaderContainer = styled.div`
+  z-index: 999;
   display: flex;
   align-items: center;
   position: sticky;
@@ -35,23 +56,3 @@ const Hamburger = styled.img`
   margin-left: auto;
   cursor: pointer;
 `;
-
-export default function Header() {
-  const [isDropdown, setIsDropdown] = useState(false);
-  const toggleDropdown = () => {
-    setIsDropdown(!isDropdown);
-  };
-
-  return (
-    <HeaderContainer>
-      <Link to="/">
-        <Home>
-          <Logo src="/images/logo.png" alt="logo" />
-          <Title>COZ Shopping</Title>
-        </Home>
-      </Link>
-      <Hamburger src={HamburgerIcon} onClick={toggleDropdown} />
-      {isDropdown && <MenuBar />}
-    </HeaderContainer>
-  );
-}
