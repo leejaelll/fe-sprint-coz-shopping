@@ -6,28 +6,11 @@ import brand from '../assets/brand.png';
 
 import styled from 'styled-components';
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 2.25rem;
-  margin: 1.5rem 0;
-`;
-const TypeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  img {
-    margin-bottom: 0.25rem;
-  }
-`;
-
 export default function ProductListCategory({
   activeType,
   productTypes,
   handleClickChangeType,
 }) {
-  console.log(activeType);
   return (
     <Container>
       {productTypes.map((type) => (
@@ -57,3 +40,19 @@ export default function ProductListCategory({
     </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 2.25rem;
+  margin: 1.5rem 0;
+`;
+const TypeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    margin-bottom: 0.25rem;
+  }
+`;

@@ -1,5 +1,4 @@
 export default function removeBookmarkProducts(removeProduct) {
-  console.log(removeProduct);
   // localStorage가 아무것도 없다면?
   const existingItems = JSON.parse(localStorage.getItem('bookmarkProducts'));
 

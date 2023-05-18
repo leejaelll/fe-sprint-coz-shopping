@@ -23,3 +23,9 @@ a {
   border-bottom: 3px solid #412dd4;
   line-height: 1.2;
 }
+
+.Toastify__toast {
+  border-radius: 12px;
+  font-weight: 700;
+  color: black;
+}

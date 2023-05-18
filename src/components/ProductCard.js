@@ -9,6 +9,70 @@ import bookmarkOn from '../assets/bookmarkOn.svg';
 import addBookmarkProducts from '../utils/addBookmarkProducts';
 import removeBookmarkProducts from '../utils/removeBookmarkProducts';
 
+export default function ProductCard({
+  list,
+  bookmark,
+  setToastMessage,
+  addNotify,
+  removeNotify,
+}) {
+  const {
+    id,
+    type,
+    title,
+    sub_title,
+    brand_name,
+    price,
+    discountPercentage,
+    image_url,
+    brand_image_url,
+    follower,
+  } = list;
+
+  const [isBooked, setIsBooked] = useState(bookmark);
+
+  const handleClick = () => {
+    setIsBooked((isBooked) => !isBooked);
+    isBooked ? removeBookmarkProducts(list) : addBookmarkProducts(list);
+
+    isBooked
+      ? setToastMessage({ id: `${list.id}`, message: 'remove' })
+      : setToastMessage({ id: `${list.id}`, message: 'add' });
+
+    isBooked ? removeNotify() : addNotify();
+  };
+
+  return (
+    <GridItem>
+      <CardImg>
+        <img src={image_url || brand_image_url} />
+        <BookmarkStar onClick={handleClick}>
+          {isBooked ? <img src={bookmarkOn} /> : <img src={bookmarkOff} />}
+        </BookmarkStar>
+      </CardImg>
+      <CardDescription>
+        <LeftSection>
+          {(type === 'Category' && <h2># {title}</h2>) || (
+            <h2>{title || brand_name}</h2>
+          )}
+
+          {sub_title && <h3>{sub_title}</h3>}
+        </LeftSection>
+        <RightSection>
+          {(type === 'Product' && <div>{discountPercentage}%</div>) ||
+            (type === 'Brand' && <div>관심고객수</div>)}
+          {(type === 'Product' && (
+            <span>{Number(price).toLocaleString()}</span>
+          )) ||
+            (type === 'Brand' && (
+              <span>{Number(follower).toLocaleString()}</span>
+            ))}
+        </RightSection>
+      </CardDescription>
+    </GridItem>
+  );
+}
+
 const CardImg = styled.div`
   width: 100%;
   height: 210px;
@@ -53,54 +117,3 @@ const RightSection = styled.div`
     margin-bottom: 0.25rem;
   }
 `;
-
-export default function ProductCard({ list, bookmark }) {
-  const {
-    type,
-    title,
-    sub_title,
-    brand_name,
-    price,
-    discountPercentage,
-    image_url,
-    brand_image_url,
-    follower,
-  } = list;
-
-  const [isBooked, setIsBooked] = useState(bookmark);
-
-  const handleClick = (list) => {
-    setIsBooked((isBooked) => !isBooked);
-    isBooked ? removeBookmarkProducts(list) : addBookmarkProducts(list);
-  };
-
-  return (
-    <GridItem>
-      <CardImg>
-        <img src={image_url || brand_image_url} />
-        <BookmarkStar onClick={() => handleClick(list)}>
-          {isBooked ? <img src={bookmarkOn} /> : <img src={bookmarkOff} />}
-        </BookmarkStar>
-      </CardImg>
-      <CardDescription>
-        <LeftSection>
-          {(type === 'Category' && <h2># {title}</h2>) || (
-            <h2>{title || brand_name}</h2>
-          )}
-
-          {sub_title && <h3>{sub_title}</h3>}
-        </LeftSection>
-        <RightSection>
-          {(type === 'Product' && <div>{discountPercentage}%</div>) ||
-            (type === 'Brand' && <div>관심고객수</div>)}
-          {(type === 'Product' && (
-            <span>{Number(price).toLocaleString()}</span>
-          )) ||
-            (type === 'Brand' && (
-              <span>{Number(follower).toLocaleString()}</span>
-            ))}
-        </RightSection>
-      </CardDescription>
-    </GridItem>
-  );
-}
