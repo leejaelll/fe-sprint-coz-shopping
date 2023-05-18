@@ -2,18 +2,24 @@
 
 CodeStates FEB 44기 쇼핑몰 구현 솔로 프로젝트입니다.
 
-## Stack
+<br />
+
+## 🔨 Stack
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
 <img src="https://img.shields.io/badge/StyledComponents-DB7093?style=flat-square&logo=styledcomponents&logoColor=white"/>
 <img src="https://img.shields.io/badge/axios-5A29E4?style=flat-square&logo=axios&logoColor=white"/>
 <img src="https://img.shields.io/badge/reactRouter-CA4245?style=flat-square&logo=reactRouter&logoColor=white"/>
 
+<br />
+
 ## 📅 기간
 
 2023.05.12 ~ 2022.05.18
 
-## 프로젝트 설명
+<br />
+
+## 📑 프로젝트 설명
 
 ![](./public/images/23-05-18-1.png)
 ![](./public/images/23-05-18-2.png)
@@ -31,7 +37,7 @@ CodeStates FEB 44기 쇼핑몰 구현 솔로 프로젝트입니다.
 
 <br />
 
-## 프로젝트 중 직면한 문제
+## 🛵 프로젝트 중 직면한 문제
 
 ### ✅ `<Link>`에 스타일을 추가하는 방법
 
@@ -128,10 +134,12 @@ export default function useFetchBookmarkProducts() {
 
 그리고 bookmarkPage 컴포넌트에서 데이터를 불러오는 함수를 호출하는 것으로 구현하였습니다.
 
-## 개선해야하는 기능
+## 🚧 개선해야하는 기능
 
 - 상품리스트에서 20개씩 보여 준 후, 추가로 데이터를 렌더링하는 무한스크롤 기능을 구현했습니다. 여기서 해결하지 못한 문제는 전체 데이터를 렌더링하지 않았을 때 타입별 상품 리스트를 하게 되면 타입별 상품 리스트가 보이지 않습니다.
 
-## 배운 점
+## 📝 배운 점
 
 - 데이터를 한 번에 받아온 후, 무한스크롤을 구현하는 방법에 대해서 고민해 볼 수 있는 시간이었습니다.
+- localStorage를 관리하는 방법에 대해서 공부할 수 있었습니다.
+- 컴포넌트 분리, 관심사의 분리에 중점을 두면서 기능을 구현해 볼 수 있었습니다.
