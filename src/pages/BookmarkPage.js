@@ -17,7 +17,7 @@ import selectTypes from '../utils/selectTypes';
 import checkBookmarkedItem from '../utils/checkBookmarkedItem';
 
 export default function BookmarkPage() {
-  const products = useFetchAllProducts();
+  const { products } = useFetchAllProducts();
   const bookmarkProducts = useFetchBookmarkProducts();
   const productTypes = selectTypes(products);
 
