@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 
@@ -7,10 +7,22 @@ import MenuBar from './MenuBar';
 import HamburgerIcon from '../assets/hamburger.svg';
 
 export default function Header() {
+  const dropMenuRef = useRef(null);
   const [isDropdown, setIsDropdown] = useState(false);
   const toggleDropdown = () => {
     setIsDropdown(!isDropdown);
   };
+
+  useEffect(() => {
+    const handleOutsideClose = (e) => {
+      // useRef current에 담긴 엘리먼트 바깥을 클릭 시 드롭메뉴 닫힘
+      if (isDropdown && !dropMenuRef.current.contains(e.target))
+        setIsDropdown(false);
+    };
+    document.addEventListener('click', handleOutsideClose);
+
+    return () => document.removeEventListener('click', handleOutsideClose);
+  }, [isDropdown]);
 
   return (
     <HeaderContainer>
@@ -20,7 +32,11 @@ export default function Header() {
           <Title>COZ Shopping</Title>
         </Home>
       </Link>
-      <Hamburger src={HamburgerIcon} onClick={toggleDropdown} />
+      <Hamburger
+        src={HamburgerIcon}
+        onClick={toggleDropdown}
+        ref={dropMenuRef}
+      />
       {isDropdown && <MenuBar />}
     </HeaderContainer>
   );

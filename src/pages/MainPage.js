@@ -45,7 +45,7 @@ export default function MainPage() {
           {bookmarkProducts.length === 0 ? (
             <GridItemCol12>북마크 리스트가 비어있습니다.🦁</GridItemCol12>
           ) : (
-            bookmarkProducts.map((list) => {
+            bookmarkProducts.slice(0, 4).map((list) => {
               const isBooked = checkBookmarkedItem(bookmarkProducts, list);
               return (
                 <ProductCard
